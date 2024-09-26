@@ -1,0 +1,30 @@
+# .gitpod.yml
+image:
+  file: .gitpod.Dockerfile  # Optional: Use if you want to define a custom Docker image for your workspace
+
+tasks:
+  - name: "Initialize Maven and Start Spring Boot"
+    init: ./mvnw clean install  # Command to run during the first-time setup
+    command: ./mvnw spring-boot:run  # Command to run the Spring Boot application
+
+ports:
+  - port: 8080  # Port for the Spring Boot application
+    onOpen: open-preview  # Automatically open a preview in Gitpod
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack  # Java Extension Pack
+    - vscjava.vscode-spring-initializr  # Spring Initializr Support
+    - vscjava.vscode-spring-boot-dashboard  # Spring Boot Dashboard
+    - esbenp.prettier-vscode  # Prettier extension for code formatting
+
+# Optional: Uncomment the lines below if you want to define a custom Docker image
+# image:
+#   file: .gitpod.Dockerfile
+
+# Uncomment to specify prebuilds (faster workspace start times)
+# github:
+#   prebuilds:
+#     master: true
+#     branches: true
+#     pullRequests: true
