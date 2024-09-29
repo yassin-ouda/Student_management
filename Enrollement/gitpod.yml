@@ -1,0 +1,20 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: "Start Database and Spring Boot Application"
+    init: docker-compose up -d  # Start the database and app container
+    command: sleep 30 && docker logs $(docker ps -q -f name=app)  # Wait for containers to start and show logs
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+  - port: 1433
+    onOpen: ignore  # Ignore opening the DB port in preview
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+    - vscjava.vscode-spring-initializr
+    - vscjava.vscode-spring-boot-dashboard
+    - esbenp.prettier-vscode
